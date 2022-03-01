@@ -2,7 +2,7 @@ const { createUser } = require('../service/user.service')
 const { registerError } = require('../constants/err.type')
 class UserController {
     async register(ctx, next) {
-        let { user_name, password } = JSON.parse(ctx.request.body)
+        let { user_name, password } = ctx.request.body
         try {
             const res = await createUser(user_name, password)
             ctx.body = {

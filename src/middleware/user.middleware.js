@@ -1,8 +1,8 @@
 const bcrypt = require('bcryptjs')
 const { getUser } = require('../service/user.service')
-const { userAlreadyExited, userFormateError, registerError } = require('../constants/err.type')
+const { userAlreadyExited, userFormateError, registerError, cryptError } = require('../constants/err.type')
 const userValidator = async (ctx, next) => {
-    let { user_name, password } = JSON.parse(ctx.request.body)
+    let { user_name, password } = ctx.request.body
     if (!user_name || !password) {
         console.error('用户名或密码为空', ctx.request.body)
         ctx.app.emit('error', userFormateError, ctx)
@@ -13,7 +13,7 @@ const userValidator = async (ctx, next) => {
 
 const userVerify = async (ctx, next) => {
     // 合理性
-    let { user_name, password } = JSON.parse(ctx.request.body)
+    let { user_name, password } = ctx.request.body
     try {
         let res = await getUser({ user_name })
         if (res) {
@@ -29,17 +29,15 @@ const userVerify = async (ctx, next) => {
     await next()
 }
 
-const cryptPassword = async (ctx, next) => {
-    let { password } = JSON.parse(ctx.request.body)
+const enCrypt = async (ctx, next) => {
+    let { password } = ctx.request.body
     let salt = bcrypt.genSaltSync(10);
     let hash = bcrypt.hashSync(password, salt);
-    console.log(salt, hash)
     ctx.request.body.password = hash
-    console.log('12==', hash)
     await next()
 }
 module.exports = {
     userValidator,
     userVerify,
-    cryptPassword
+    enCrypt
 }

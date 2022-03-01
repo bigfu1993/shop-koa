@@ -13,5 +13,10 @@ module.exports = {
         code: '10003',
         message: '用户注册错误',
         result: ''
+    },
+    cryptError: {
+        code: '10004',
+        message: '密码加密错误',
+        result: ''
     }
 }

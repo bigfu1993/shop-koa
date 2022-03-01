@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize');
 const { MYSQL_HOST, MYSQL_PORT, MYSQL_USER, MYSQL_PWD, MYSQL_DB } = require('../../config/config.default')
 const seq = new Sequelize(MYSQL_DB, MYSQL_USER, MYSQL_PWD, {
-    // const sequelize = new Sequelize(MYSQL_DB, 'bigfu', '000000', {
+    // const seq = new Sequelize(MYSQL_DB, 'bigfu', '000000', {
     host: MYSQL_HOST,
     dialect: 'mysql'
 });
