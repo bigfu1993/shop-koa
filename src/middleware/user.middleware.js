@@ -1,6 +1,12 @@
 const bcrypt = require('bcryptjs')
 const { getUser } = require('../service/user.service')
-const { userAlreadyExited, userFormateError, registerError, cryptError } = require('../constants/err.type')
+const {
+    userAlreadyExited,
+    userFormateError,
+    registerError,
+    userDoseNotExited,
+    userLoginError,
+    invalidPassword } = require('../constants/err.type')
 const userValidator = async (ctx, next) => {
     let { user_name, password } = ctx.request.body
     if (!user_name || !password) {
@@ -29,15 +35,28 @@ const userVerify = async (ctx, next) => {
     await next()
 }
 
-const enCrypt = async (ctx, next) => {
-    let { password } = ctx.request.body
-    let salt = bcrypt.genSaltSync(10);
-    let hash = bcrypt.hashSync(password, salt);
-    ctx.request.body.password = hash
+const loginVerify = async (ctx, next) => {
+    try {
+        let { user_name, password } = ctx.request.body
+        let res = await getUser({ user_name })
+        if (!res) {
+            console.error('用户名不存在')
+            ctx.app.emit('error', userDoseNotExited, ctx)
+            return
+        }
+        if (!bcrypt.compareSync(password, res.password)) {
+            ctx.app.emit('error', invalidPassword, ctx)
+            return
+        }
+    } catch (err) {
+        console.error('用户登陆失败')
+        ctx.app.emit('error', userLoginError, ctx)
+        return
+    }
     await next()
 }
 module.exports = {
     userValidator,
     userVerify,
-    enCrypt
+    loginVerify
 }
