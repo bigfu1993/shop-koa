@@ -22,6 +22,8 @@ const Goods = seq.define('shop_goods', {
         allowNull: false,
         comment: '商品图片'
     }
+}, {
+    paranoid: true
 })
 // 强制同步数据库（创建数据表）
 // Goods.sync({ force: true })
