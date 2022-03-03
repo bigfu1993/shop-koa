@@ -6,7 +6,8 @@ const {
     registerError,
     userDoseNotExited,
     userLoginError,
-    invalidPassword } = require('../constants/err.type')
+    invalidPassword
+} = require('../constants/err.type')
 const userValidator = async (ctx, next) => {
     let { user_name, password } = ctx.request.body
     if (!user_name || !password) {

@@ -44,5 +44,10 @@ module.exports = {
         message: 'token验证出错',
         result: ''
 
+    },
+    noAdminPermission: {
+        code: '10103',
+        message: '没有管理员权限',
+        result: ''
     }
 }
