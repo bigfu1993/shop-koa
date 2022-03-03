@@ -54,6 +54,10 @@ module.exports = {
         code: '10201',
         message: '文件资源上传失败',
         result: ''
-
-    }
+    },
+    goodsFormatError: {
+        code: '10203',
+        message: '商品参数格式错误',
+        result: ''
+    },
 }

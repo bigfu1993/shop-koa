@@ -16,6 +16,10 @@ app.use(KoaBody({
     }
 }))
 
+// parameter
+const parameter = require('koa-parameter');
+app.use(parameter(app))
+
 // routes 
 const router = require('../router')
 app.use(router.routes(), router.allowedMethods())
