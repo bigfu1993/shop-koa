@@ -49,5 +49,11 @@ module.exports = {
         code: '10103',
         message: '没有管理员权限',
         result: ''
+    },
+    sourceUploadError: {
+        code: '10201',
+        message: '文件资源上传失败',
+        result: ''
+
     }
 }
