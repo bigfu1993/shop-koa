@@ -1,5 +1,5 @@
-const seq = require('../index')
 const { DataTypes } = require("sequelize");
+const seq = require('../index')
 
 const User = seq.define('shop_user', {
     user_name: {

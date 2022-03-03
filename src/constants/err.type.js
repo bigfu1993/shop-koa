@@ -55,9 +55,19 @@ module.exports = {
         message: '文件资源上传失败',
         result: ''
     },
-    goodsFormatError: {
+    goodsValidatorError: {
         code: '10203',
         message: '商品参数格式错误',
+        result: ''
+    },
+    publishGoodsError: {
+        code: '10204',
+        message: '发布商品错误',
+        result: ''
+    },
+    invalidGoodsID: {
+        code: '10205',
+        message: '商品id不存在',
         result: ''
     },
 }
