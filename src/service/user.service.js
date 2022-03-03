@@ -13,6 +13,13 @@ class UserService {
         })
         return res ? res.dataValues : null
     }
+    async updateUser(userObj) {
+        let { id, ...newUser } = userObj
+        let whereOpt = { id }
+        let res = await User.update(newUser, {
+            where: whereOpt
+        })
+    }
 }
 
 module.exports = new UserService()
