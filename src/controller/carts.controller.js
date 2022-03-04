@@ -1,6 +1,6 @@
 const { createOrUpdateCarts, updateCarts, findCarts, removeCarts, toggleAllCarts } = require('../service/carts.service')
 const { cartsFormatError } = require('../constants/err.type')
-class Carts {
+class CartsController {
     async add(ctx, next) {
         try {
             let { id: user_id } = ctx.state.user
@@ -74,4 +74,4 @@ class Carts {
         }
     }
 }
-module.exports = new Carts()
+module.exports = new CartsController()

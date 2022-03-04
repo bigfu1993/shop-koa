@@ -1,4 +1,9 @@
 module.exports = {
+    validatorError: {
+        code: '00001',
+        message: '数据规则未通过',
+        result: ''
+    },
     userFormateError: {
         code: '10001',
         message: '用户名或者密码为空',

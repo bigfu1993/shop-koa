@@ -1,6 +1,6 @@
 const { createGoods, updateGoods, removeGoods, restoreGoods, queryGoods } = require('../service/goods.service')
 const { publishGoodsError, invalidGoodsID } = require('../constants/err.type')
-class GoodsControl {
+class GoodsController {
     async create(ctx) {
         try {
             let goodsObj = ctx.request.body
@@ -82,4 +82,4 @@ class GoodsControl {
         }
     }
 }
-module.exports = new GoodsControl()
+module.exports = new GoodsController()
