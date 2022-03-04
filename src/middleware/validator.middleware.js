@@ -1,5 +1,5 @@
 const errorConstants = require('../constants/err.type')
-const validator = (rules, errorKey, errorBody) => {
+const validator = (rules, errorKey = 'default', errorBody) => {
     return async (ctx, next) => {
         try {
             ctx.verifyParams(rules)
