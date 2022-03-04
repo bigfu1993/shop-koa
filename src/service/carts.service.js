@@ -37,5 +37,28 @@ class CartsService {
             list: rows
         }
     }
+    async updateCarts(cartsObj) {
+        let { id, number, selected } = cartsObj
+        let res = await Carts.findByPk(id)
+        if (!res) return ''
+        res.number = number || ''
+        res.selected = selected || ''
+        return await res.save()
+    }
+    async removeCarts(cartsObj) {
+        let res = await Carts.destroy({
+            where: {
+                id: {
+                    [Op.in]: cartsObj
+                }
+            }
+        })
+        return res
+    }
+    async toggleAllCarts(cartsObj) {
+        let { user_id, state } = cartsObj
+        let res = await Carts.update({ selected: state == 1 }, { where: { user_id } })
+        return res
+    }
 }
 module.exports = new CartsService()

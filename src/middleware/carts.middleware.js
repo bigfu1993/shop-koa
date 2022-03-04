@@ -1,16 +1,16 @@
 
-const { invalidGoodsID } = require('../constants/err.type')
-const validator = async (ctx, next) => {
-    try {
-        ctx.verifyParams({
-            goods_id: 'number'
-        })
-    } catch (err) {
-        console.error('购物车参数报错', err)
-        invalidGoodsID.result = err
-        return ctx.app.emit('error', invalidGoodsID, ctx)
+const { cartsFormatError } = require('../constants/err.type')
+const validator = (rules) => {
+    return async (ctx, next) => {
+        try {
+            ctx.verifyParams(rules)
+        } catch (err) {
+            console.error('购物车参数报错', err)
+            cartsFormatError.result = err
+            return ctx.app.emit('error', cartsFormatError, ctx)
+        }
+        await next()
     }
-    await next()
 }
 module.exports = {
     validator

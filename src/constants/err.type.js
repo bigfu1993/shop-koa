@@ -70,4 +70,9 @@ module.exports = {
         message: '无效的商品id',
         result: ''
     },
+    cartsFormatError: {
+        code: '10301',
+        message: '购物车数据格式错误',
+        result: ''
+    },
 }

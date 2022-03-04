@@ -10,6 +10,7 @@ app.use(KoaStatic(path.resolve(__dirname, '../upload')));
 const KoaBody = require('koa-body')
 app.use(KoaBody({
     multipart: true,
+    parsedMethods: ['PUT', 'POST', 'PATCH', 'DELETE'],
     formidable: {
         uploadDir: path.resolve(__dirname, '../upload'),
         keepExtensions: true

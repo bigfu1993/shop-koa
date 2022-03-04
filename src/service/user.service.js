@@ -9,7 +9,7 @@ class UserService {
         const whereOpt = { ...userObj }
         const res = await User.findOne({
             attributes: ['id', 'user_name', 'password', 'is_admin'],
-            where: whereOpt
+            where: userObj
         })
         return res ? res.dataValues : null
     }
