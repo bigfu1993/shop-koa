@@ -1,4 +1,9 @@
 module.exports = {
+    orderValidatorError: {
+        code: '10501',
+        message: '订单数据格式错误',
+        result: ''
+    },
     validatorError: {
         code: '00001',
         message: '数据规则未通过',
